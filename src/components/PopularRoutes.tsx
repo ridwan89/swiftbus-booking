@@ -2,54 +2,62 @@ import { ArrowRight, Clock, Star } from "lucide-react";
 
 const routes = [
   {
-    from: "New York",
-    to: "Boston",
-    duration: "4h 30m",
-    price: 45,
+    from: "Jakarta",
+    to: "Bandung",
+    duration: "3j 00m",
+    price: 85000,
     rating: 4.8,
-    departures: 12,
+    departures: 15,
   },
   {
-    from: "Los Angeles",
-    to: "San Francisco",
-    duration: "6h 15m",
-    price: 55,
+    from: "Jakarta",
+    to: "Surabaya",
+    duration: "12j 00m",
+    price: 250000,
     rating: 4.7,
     departures: 8,
   },
   {
-    from: "Chicago",
-    to: "Detroit",
-    duration: "5h 00m",
-    price: 38,
+    from: "Bandung",
+    to: "Yogyakarta",
+    duration: "8j 30m",
+    price: 180000,
     rating: 4.6,
     departures: 10,
   },
   {
-    from: "Miami",
-    to: "Orlando",
-    duration: "3h 45m",
-    price: 32,
+    from: "Jakarta",
+    to: "Semarang",
+    duration: "7j 00m",
+    price: 150000,
     rating: 4.9,
-    departures: 15,
+    departures: 12,
   },
   {
-    from: "Seattle",
-    to: "Portland",
-    duration: "3h 30m",
-    price: 28,
+    from: "Surabaya",
+    to: "Malang",
+    duration: "2j 30m",
+    price: 45000,
     rating: 4.8,
-    departures: 9,
+    departures: 20,
   },
   {
-    from: "Dallas",
-    to: "Houston",
-    duration: "4h 00m",
-    price: 35,
+    from: "Yogyakarta",
+    to: "Solo",
+    duration: "1j 30m",
+    price: 35000,
     rating: 4.5,
-    departures: 11,
+    departures: 25,
   },
 ];
+
+const formatPrice = (price: number) => {
+  return new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    minimumFractionDigits: 0,
+  }).format(price);
+};
 
 const PopularRoutes = () => {
   return (
@@ -57,13 +65,13 @@ const PopularRoutes = () => {
       <div className="container">
         <div className="text-center mb-12">
           <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
-            Popular Routes
+            Rute Populer
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Most Traveled Destinations
+            Destinasi Paling Diminati
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Discover our most popular bus routes with frequent departures, competitive prices, and excellent ratings from travelers.
+            Temukan rute bus paling populer dengan keberangkatan rutin, harga kompetitif, dan rating terbaik dari penumpang.
           </p>
         </div>
 
@@ -80,14 +88,14 @@ const PopularRoutes = () => {
                   </div>
                   <div>
                     <p className="font-semibold text-foreground">{route.from}</p>
-                    <p className="text-xs text-muted-foreground">Departure</p>
+                    <p className="text-xs text-muted-foreground">Keberangkatan</p>
                   </div>
                 </div>
                 <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
                 <div className="flex items-center gap-3">
                   <div>
                     <p className="font-semibold text-foreground text-right">{route.to}</p>
-                    <p className="text-xs text-muted-foreground text-right">Arrival</p>
+                    <p className="text-xs text-muted-foreground text-right">Tujuan</p>
                   </div>
                   <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center">
                     <span className="text-lg font-bold text-accent">{route.to[0]}</span>
@@ -107,9 +115,9 @@ const PopularRoutes = () => {
                   </div>
                 </div>
                 <div className="text-right">
-                  <p className="text-xs text-muted-foreground">{route.departures} daily departures</p>
+                  <p className="text-xs text-muted-foreground">{route.departures} keberangkatan/hari</p>
                   <p className="text-lg font-bold text-primary">
-                    From ${route.price}
+                    Mulai {formatPrice(route.price)}
                   </p>
                 </div>
               </div>
@@ -119,7 +127,7 @@ const PopularRoutes = () => {
 
         <div className="text-center mt-10">
           <a href="#" className="inline-flex items-center gap-2 text-primary font-medium hover:underline">
-            View all routes
+            Lihat semua rute
             <ArrowRight className="w-4 h-4" />
           </a>
         </div>

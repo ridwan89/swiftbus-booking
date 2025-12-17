@@ -2,6 +2,7 @@ import { useState } from "react";
 import { MapPin, Calendar, Users, ArrowRight, ArrowLeftRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
+import { id } from "date-fns/locale";
 import { Calendar as CalendarComponent } from "@/components/ui/calendar";
 import {
   Popover,
@@ -18,21 +19,24 @@ import {
 import { cn } from "@/lib/utils";
 
 const cities = [
-  "New York",
-  "Los Angeles",
-  "Chicago",
-  "Houston",
-  "Phoenix",
-  "Philadelphia",
-  "San Antonio",
-  "San Diego",
-  "Dallas",
-  "San Francisco",
-  "Austin",
-  "Seattle",
-  "Denver",
-  "Boston",
-  "Miami",
+  "Jakarta",
+  "Bandung",
+  "Surabaya",
+  "Semarang",
+  "Yogyakarta",
+  "Solo",
+  "Malang",
+  "Cirebon",
+  "Bekasi",
+  "Tangerang",
+  "Depok",
+  "Bogor",
+  "Tasikmalaya",
+  "Purwokerto",
+  "Madiun",
+  "Kediri",
+  "Tegal",
+  "Pekalongan",
 ];
 
 const SearchForm = () => {
@@ -52,11 +56,11 @@ const SearchForm = () => {
       <div className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4 items-end">
         {/* From */}
         <div className="md:col-span-3 relative">
-          <label className="text-xs font-medium text-muted-foreground mb-1.5 block">From</label>
+          <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Dari</label>
           <Select value={from} onValueChange={setFrom}>
             <SelectTrigger className="h-12 md:h-14 bg-secondary border-0 rounded-xl pl-10">
               <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-primary" />
-              <SelectValue placeholder="Select city" />
+              <SelectValue placeholder="Pilih kota" />
             </SelectTrigger>
             <SelectContent>
               {cities.map((city) => (
@@ -80,11 +84,11 @@ const SearchForm = () => {
 
         {/* To */}
         <div className="md:col-span-3 relative">
-          <label className="text-xs font-medium text-muted-foreground mb-1.5 block">To</label>
+          <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Ke</label>
           <Select value={to} onValueChange={setTo}>
             <SelectTrigger className="h-12 md:h-14 bg-secondary border-0 rounded-xl pl-10">
               <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-accent" />
-              <SelectValue placeholder="Select city" />
+              <SelectValue placeholder="Pilih kota" />
             </SelectTrigger>
             <SelectContent>
               {cities.filter((c) => c !== from).map((city) => (
@@ -98,7 +102,7 @@ const SearchForm = () => {
 
         {/* Date */}
         <div className="md:col-span-2 relative">
-          <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Date</label>
+          <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Tanggal</label>
           <Popover>
             <PopoverTrigger asChild>
               <button
@@ -108,7 +112,7 @@ const SearchForm = () => {
                 )}
               >
                 <Calendar className="absolute left-3 w-5 h-5 text-primary" />
-                {date ? format(date, "EEE, MMM d") : "Select date"}
+                {date ? format(date, "EEE, d MMM", { locale: id }) : "Pilih tanggal"}
               </button>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0" align="start">
@@ -125,7 +129,7 @@ const SearchForm = () => {
 
         {/* Passengers */}
         <div className="md:col-span-1 relative">
-          <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Passengers</label>
+          <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Penumpang</label>
           <Select value={passengers} onValueChange={setPassengers}>
             <SelectTrigger className="h-12 md:h-14 bg-secondary border-0 rounded-xl pl-10">
               <Users className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-primary" />
@@ -144,7 +148,7 @@ const SearchForm = () => {
         {/* Search Button */}
         <div className="md:col-span-2">
           <Button variant="search" size="xl" className="w-full h-12 md:h-14">
-            Search Buses
+            Cari Bus
             <ArrowRight className="w-5 h-5" />
           </Button>
         </div>

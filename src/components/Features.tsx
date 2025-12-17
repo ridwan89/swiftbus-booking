@@ -3,33 +3,33 @@ import { Shield, Clock, Headphones, Wifi, CreditCard, MapPin } from "lucide-reac
 const features = [
   {
     icon: Shield,
-    title: "Safe & Secure",
-    description: "All our buses undergo regular safety inspections and our drivers are professionally trained.",
+    title: "Aman & Terpercaya",
+    description: "Semua bus kami menjalani inspeksi keamanan rutin dan pengemudi kami terlatih secara profesional.",
   },
   {
     icon: Clock,
-    title: "On-Time Departures",
-    description: "We pride ourselves on punctuality with 95% of our buses departing and arriving on schedule.",
+    title: "Tepat Waktu",
+    description: "Kami bangga dengan ketepatan waktu dengan 95% bus kami berangkat dan tiba sesuai jadwal.",
   },
   {
     icon: Headphones,
-    title: "24/7 Support",
-    description: "Our customer service team is available around the clock to assist with your travel needs.",
+    title: "Layanan 24 Jam",
+    description: "Tim customer service kami siap membantu kapan saja untuk kebutuhan perjalananmu.",
   },
   {
     icon: Wifi,
-    title: "Free WiFi",
-    description: "Stay connected during your journey with complimentary high-speed WiFi on all our buses.",
+    title: "WiFi Gratis",
+    description: "Tetap terhubung selama perjalanan dengan WiFi gratis berkecepatan tinggi di semua bus kami.",
   },
   {
     icon: CreditCard,
-    title: "Easy Refunds",
-    description: "Flexible cancellation policy with hassle-free refunds up to 24 hours before departure.",
+    title: "Refund Mudah",
+    description: "Kebijakan pembatalan fleksibel dengan pengembalian dana mudah hingga 24 jam sebelum keberangkatan.",
   },
   {
     icon: MapPin,
-    title: "Live Tracking",
-    description: "Track your bus in real-time and get accurate arrival notifications to your phone.",
+    title: "Lacak Real-time",
+    description: "Lacak bus secara real-time dan dapatkan notifikasi kedatangan akurat di HP-mu.",
   },
 ];
 
@@ -39,13 +39,13 @@ const Features = () => {
       <div className="container">
         <div className="text-center mb-12">
           <span className="inline-block px-4 py-1.5 bg-primary-foreground/20 text-primary-foreground rounded-full text-sm font-medium mb-4">
-            Why Choose Us
+            Mengapa Pilih Kami
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
-            Travel With Confidence
+            Perjalanan dengan Keyakinan
           </h2>
           <p className="text-primary-foreground/80 max-w-2xl mx-auto">
-            Experience the difference with our premium bus service. We go above and beyond to make your journey comfortable and memorable.
+            Rasakan perbedaan dengan layanan bus premium kami. Kami berusaha lebih untuk membuat perjalananmu nyaman dan berkesan.
           </p>
         </div>
 

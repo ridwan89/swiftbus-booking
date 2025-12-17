@@ -6,11 +6,11 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
-    { label: "Book Tickets", href: "#search" },
-    { label: "Routes", href: "#routes" },
-    { label: "Track Bus", href: "#" },
-    { label: "Offers", href: "#" },
-    { label: "Contact", href: "#contact" },
+    { label: "Pesan Tiket", href: "#search" },
+    { label: "Rute", href: "#routes" },
+    { label: "Lacak Bus", href: "#" },
+    { label: "Promo", href: "#" },
+    { label: "Kontak", href: "#contact" },
   ];
 
   return (
@@ -42,10 +42,10 @@ const Header = () => {
           <div className="flex items-center gap-3">
             <Button variant="ghost" size="sm" className="hidden md:flex gap-2">
               <User className="w-4 h-4" />
-              Sign In
+              Masuk
             </Button>
             <Button variant="accent" size="sm" className="hidden md:flex">
-              Register
+              Daftar
             </Button>
             
             {/* Mobile Menu Button */}
@@ -74,10 +74,10 @@ const Header = () => {
               ))}
               <div className="flex gap-2 px-4 pt-2">
                 <Button variant="outline" size="sm" className="flex-1">
-                  Sign In
+                  Masuk
                 </Button>
                 <Button variant="accent" size="sm" className="flex-1">
-                  Register
+                  Daftar
                 </Button>
               </div>
             </nav>
