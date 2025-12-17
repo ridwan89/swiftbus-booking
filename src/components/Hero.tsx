@@ -8,7 +8,7 @@ const Hero = () => {
       <div className="absolute inset-0 z-0">
         <img
           src={heroBus}
-          alt="Modern bus on scenic highway"
+          alt="Bus modern di jalan raya"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-foreground/90 via-foreground/70 to-foreground/40" />
@@ -17,15 +17,15 @@ const Hero = () => {
       <div className="container relative z-10">
         <div className="max-w-3xl">
           <span className="inline-block px-4 py-1.5 bg-accent/20 text-accent rounded-full text-sm font-medium mb-6 animate-fade-up">
-            🚌 Trusted by 1M+ travelers
+            🚌 Dipercaya 1 Juta+ Penumpang
           </span>
           
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary-foreground leading-tight mb-6 animate-fade-up" style={{ animationDelay: "0.1s" }}>
-            Your Journey Starts Here
+            Perjalananmu Dimulai di Sini
           </h1>
           
           <p className="text-lg md:text-xl text-primary-foreground/80 mb-8 max-w-xl animate-fade-up" style={{ animationDelay: "0.2s" }}>
-            Book bus tickets to hundreds of destinations across the country. Comfortable rides, affordable prices, and reliable schedules.
+            Pesan tiket bus ke ratusan destinasi di seluruh Pulau Jawa. Perjalanan nyaman, harga terjangkau, dan jadwal terpercaya.
           </p>
 
           <div className="animate-fade-up" style={{ animationDelay: "0.3s" }}>
@@ -36,11 +36,11 @@ const Hero = () => {
           <div className="grid grid-cols-3 gap-6 mt-12 max-w-lg animate-fade-up" style={{ animationDelay: "0.4s" }}>
             <div>
               <p className="text-3xl md:text-4xl font-bold text-primary-foreground">500+</p>
-              <p className="text-primary-foreground/60 text-sm">Routes</p>
+              <p className="text-primary-foreground/60 text-sm">Rute</p>
             </div>
             <div>
-              <p className="text-3xl md:text-4xl font-bold text-primary-foreground">1M+</p>
-              <p className="text-primary-foreground/60 text-sm">Happy Travelers</p>
+              <p className="text-3xl md:text-4xl font-bold text-primary-foreground">1Jt+</p>
+              <p className="text-primary-foreground/60 text-sm">Penumpang Puas</p>
             </div>
             <div>
               <p className="text-3xl md:text-4xl font-bold text-primary-foreground">4.8</p>

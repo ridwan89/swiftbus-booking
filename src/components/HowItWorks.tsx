@@ -3,26 +3,26 @@ import { Search, CreditCard, CheckCircle2, Ticket } from "lucide-react";
 const steps = [
   {
     icon: Search,
-    title: "Search Routes",
-    description: "Enter your departure and arrival cities, select your travel date, and find available buses.",
+    title: "Cari Rute",
+    description: "Masukkan kota keberangkatan dan tujuan, pilih tanggal perjalanan, dan temukan bus yang tersedia.",
     color: "bg-primary",
   },
   {
     icon: Ticket,
-    title: "Choose Your Bus",
-    description: "Compare prices, timings, and amenities. Select the perfect bus that fits your needs.",
+    title: "Pilih Bus",
+    description: "Bandingkan harga, jadwal, dan fasilitas. Pilih bus yang paling sesuai kebutuhanmu.",
     color: "bg-teal-dark",
   },
   {
     icon: CreditCard,
-    title: "Make Payment",
-    description: "Pay securely with credit card, debit card, or digital wallets. Fast and hassle-free checkout.",
+    title: "Bayar",
+    description: "Bayar dengan aman via transfer bank, e-wallet, atau kartu kredit. Proses cepat dan mudah.",
     color: "bg-accent",
   },
   {
     icon: CheckCircle2,
-    title: "Get Your Ticket",
-    description: "Receive your e-ticket instantly via email and SMS. Show it on your phone when boarding.",
+    title: "Terima Tiket",
+    description: "Dapatkan e-tiket langsung via email dan SMS. Tunjukkan di HP saat naik bus.",
     color: "bg-primary",
   },
 ];
@@ -33,13 +33,13 @@ const HowItWorks = () => {
       <div className="container">
         <div className="text-center mb-12">
           <span className="inline-block px-4 py-1.5 bg-accent/10 text-accent rounded-full text-sm font-medium mb-4">
-            How It Works
+            Cara Pemesanan
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Book Your Ticket in 4 Easy Steps
+            Pesan Tiket dalam 4 Langkah Mudah
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Our streamlined booking process makes it quick and easy to secure your seat on any bus route.
+            Proses pemesanan kami yang simpel memudahkanmu untuk mendapatkan kursi di bus manapun dengan cepat.
           </p>
         </div>
 
@@ -56,7 +56,7 @@ const HowItWorks = () => {
                   <step.icon className="w-10 h-10 text-primary-foreground" />
                 </div>
                 <span className="inline-block px-3 py-1 bg-secondary rounded-full text-xs font-medium text-muted-foreground mb-3">
-                  Step {index + 1}
+                  Langkah {index + 1}
                 </span>
                 <h3 className="text-xl font-semibold text-foreground mb-2">{step.title}</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">{step.description}</p>
