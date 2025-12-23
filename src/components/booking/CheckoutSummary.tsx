@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Bus, MapPin, Calendar, Clock, User, CreditCard, CheckCircle } from "lucide-react";
+import { Bus, MapPin, Calendar, Clock, User, CreditCard, CheckCircle, Car, Bike } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -7,6 +7,7 @@ import { Bus as BusType, formatPrice } from "@/data/mockData";
 import { PickupData } from "./BusCard";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import PaymentMethods from "./PaymentMethods";
 
 interface CheckoutSummaryProps {
   bus: BusType;
@@ -15,11 +16,17 @@ interface CheckoutSummaryProps {
   onClose: () => void;
 }
 
+const providerLogos = {
+  gojek: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Gojek_logo_2019.svg/120px-Gojek_logo_2019.svg.png",
+  grab: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Grab_Logo.svg/120px-Grab_Logo.svg.png",
+};
+
 const CheckoutSummary = ({ bus, pickupData, date, onClose }: CheckoutSummaryProps) => {
   const navigate = useNavigate();
   const [passengerName, setPassengerName] = useState("");
   const [passengerPhone, setPassengerPhone] = useState("");
   const [passengerEmail, setPassengerEmail] = useState("");
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
 
@@ -35,6 +42,24 @@ const CheckoutSummary = ({ bus, pickupData, date, onClose }: CheckoutSummaryProp
 
   const handleViewTracking = () => {
     navigate('/tracking');
+  };
+
+  const getPaymentMethodName = (id: string) => {
+    const methods: Record<string, string> = {
+      gopay: "GoPay",
+      ovo: "OVO",
+      dana: "DANA",
+      shopeepay: "ShopeePay",
+      bca_va: "BCA Virtual Account",
+      bni_va: "BNI Virtual Account",
+      bri_va: "BRI Virtual Account",
+      mandiri_va: "Mandiri Virtual Account",
+      qris: "QRIS",
+      credit_card: "Kartu Kredit/Debit",
+      indomaret: "Indomaret",
+      alfamart: "Alfamart",
+    };
+    return methods[id] || id;
   };
 
   if (isComplete) {
@@ -54,9 +79,12 @@ const CheckoutSummary = ({ bus, pickupData, date, onClose }: CheckoutSummaryProp
             <CheckCircle className="w-10 h-10 text-green-500" />
           </motion.div>
           <h2 className="text-2xl font-bold text-foreground mb-2">Pembayaran Berhasil!</h2>
-          <p className="text-muted-foreground mb-6">
+          <p className="text-muted-foreground mb-4">
             Tiket Anda telah dikonfirmasi. E-ticket telah dikirim ke {passengerEmail}
           </p>
+          <div className="p-3 bg-secondary/50 rounded-lg mb-4 text-sm text-muted-foreground">
+            Dibayar via <span className="font-medium text-foreground">{getPaymentMethodName(selectedPaymentMethod || "")}</span>
+          </div>
           <div className="p-4 bg-secondary rounded-xl mb-6">
             <p className="text-sm text-muted-foreground">Kode Booking</p>
             <p className="text-2xl font-bold font-mono text-primary">SWB-{Date.now().toString().slice(-8)}</p>
@@ -84,10 +112,10 @@ const CheckoutSummary = ({ bus, pickupData, date, onClose }: CheckoutSummaryProp
       <motion.div
         initial={{ scale: 0.9, y: 20 }}
         animate={{ scale: 1, y: 0 }}
-        className="bg-card rounded-2xl shadow-elevated max-w-2xl w-full my-8"
+        className="bg-card rounded-2xl shadow-elevated max-w-2xl w-full my-8 max-h-[90vh] overflow-y-auto"
       >
         {/* Header */}
-        <div className="p-6 border-b border-border">
+        <div className="p-6 border-b border-border sticky top-0 bg-card z-10">
           <h2 className="text-xl font-bold text-foreground">Ringkasan Pemesanan</h2>
           <p className="text-sm text-muted-foreground">Periksa detail pesanan Anda sebelum melanjutkan</p>
         </div>
@@ -127,8 +155,22 @@ const CheckoutSummary = ({ bus, pickupData, date, onClose }: CheckoutSummaryProp
               {pickupData.pickupEnabled && (
                 <div className="flex items-start gap-3 p-3 bg-green-500/5 rounded-lg border border-green-500/20">
                   <MapPin className="w-5 h-5 text-green-600 mt-0.5" />
-                  <div>
-                    <p className="font-medium text-foreground">Penjemputan</p>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-1">
+                      <p className="font-medium text-foreground">Penjemputan</p>
+                      <div className="flex items-center gap-1">
+                        <img 
+                          src={providerLogos[pickupData.pickupProvider || "gojek"]} 
+                          alt="provider" 
+                          className="h-4 object-contain" 
+                        />
+                        {pickupData.pickupVehicle === "motor" ? (
+                          <Bike className="w-4 h-4 text-muted-foreground" />
+                        ) : (
+                          <Car className="w-4 h-4 text-muted-foreground" />
+                        )}
+                      </div>
+                    </div>
                     <p className="text-sm text-muted-foreground">{pickupData.pickupLocation || 'Lokasi belum dipilih'}</p>
                   </div>
                   <span className="ml-auto font-medium text-green-600">+{formatPrice(pickupData.pickupPrice)}</span>
@@ -137,8 +179,22 @@ const CheckoutSummary = ({ bus, pickupData, date, onClose }: CheckoutSummaryProp
               {pickupData.dropoffEnabled && (
                 <div className="flex items-start gap-3 p-3 bg-accent/5 rounded-lg border border-accent/20">
                   <MapPin className="w-5 h-5 text-accent mt-0.5" />
-                  <div>
-                    <p className="font-medium text-foreground">Pengantaran</p>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-1">
+                      <p className="font-medium text-foreground">Pengantaran</p>
+                      <div className="flex items-center gap-1">
+                        <img 
+                          src={providerLogos[pickupData.dropoffProvider || "grab"]} 
+                          alt="provider" 
+                          className="h-4 object-contain" 
+                        />
+                        {pickupData.dropoffVehicle === "motor" ? (
+                          <Bike className="w-4 h-4 text-muted-foreground" />
+                        ) : (
+                          <Car className="w-4 h-4 text-muted-foreground" />
+                        )}
+                      </div>
+                    </div>
                     <p className="text-sm text-muted-foreground">{pickupData.dropoffLocation || 'Lokasi belum dipilih'}</p>
                   </div>
                   <span className="ml-auto font-medium text-accent">+{formatPrice(pickupData.dropoffPrice)}</span>
@@ -185,6 +241,12 @@ const CheckoutSummary = ({ bus, pickupData, date, onClose }: CheckoutSummaryProp
             </div>
           </div>
 
+          {/* Payment Methods */}
+          <PaymentMethods
+            selectedMethod={selectedPaymentMethod}
+            onSelect={setSelectedPaymentMethod}
+          />
+
           {/* Payment Summary */}
           <div className="p-4 bg-gradient-to-r from-primary/10 to-accent/10 rounded-xl">
             <div className="space-y-2 mb-4">
@@ -194,13 +256,17 @@ const CheckoutSummary = ({ bus, pickupData, date, onClose }: CheckoutSummaryProp
               </div>
               {pickupData.pickupEnabled && (
                 <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Layanan Penjemputan</span>
+                  <span className="text-muted-foreground">
+                    Layanan Penjemputan ({pickupData.pickupVehicle === "motor" ? "Motor" : "Mobil"})
+                  </span>
                   <span className="text-green-600">+{formatPrice(pickupData.pickupPrice)}</span>
                 </div>
               )}
               {pickupData.dropoffEnabled && (
                 <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Layanan Pengantaran</span>
+                  <span className="text-muted-foreground">
+                    Layanan Pengantaran ({pickupData.dropoffVehicle === "motor" ? "Motor" : "Mobil"})
+                  </span>
                   <span className="text-accent">+{formatPrice(pickupData.dropoffPrice)}</span>
                 </div>
               )}
@@ -213,7 +279,7 @@ const CheckoutSummary = ({ bus, pickupData, date, onClose }: CheckoutSummaryProp
         </div>
 
         {/* Footer Actions */}
-        <div className="p-6 border-t border-border flex gap-4">
+        <div className="p-6 border-t border-border flex gap-4 sticky bottom-0 bg-card">
           <Button onClick={onClose} variant="outline" className="flex-1">
             Batal
           </Button>
@@ -221,7 +287,7 @@ const CheckoutSummary = ({ bus, pickupData, date, onClose }: CheckoutSummaryProp
             onClick={handlePayment}
             variant="search"
             className="flex-1"
-            disabled={!passengerName || !passengerPhone || !passengerEmail || isProcessing}
+            disabled={!passengerName || !passengerPhone || !passengerEmail || !selectedPaymentMethod || isProcessing}
           >
             {isProcessing ? (
               <span className="flex items-center gap-2">
